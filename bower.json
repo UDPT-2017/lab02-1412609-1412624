@@ -1,0 +1,24 @@
+{
+  "name": "lab02-1412609-1412624",
+  "description": "Ung dung chat",
+  "main": "index.js",
+  "authors": [
+    "Anh Tu"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "123"
+  ],
+  "homepage": "https://github.com/UDPT-2017/lab02-1412609-1412624",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "v4.0.0-alpha.6"
+  }
+}
