@@ -2,10 +2,12 @@
 <html>
 
 <head>
-    <title>Chat app</title>
-    <link rel="stylesheet" href="components\bootstrap\dist\css\bootstrap.min.css">
-    <script src="components\jquery\dist\jquery.min.js"></script>
-    <script src="components\bootstrap\dist\js\bootstrap.min.js"></script>
+   
+    <link rel="stylesheet" href="\components\bootstrap\dist\css\bootstrap.min.css">
+    <script src="\components\jquery\dist\jquery.min.js"></script>
+    <script src="\components\bootstrap\dist\js\bootstrap.min.js"></script>
+    <meta charset="utf-8">
+    <link rel="icon" href="/icon/logo.svg">
 </head>
 
 <body>
@@ -15,12 +17,12 @@
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-        <a class="navbar-brand" href="#"><img src="icon\logo.svg" width="30" height="30" class="d-inline-block align-top" alt=""></a>
+        <a class="navbar-brand" href="/"><img src="\icon\logo.svg" width="30" height="30" class="d-inline-block align-top" alt=""></a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Messages</a>
@@ -32,15 +34,13 @@
                     <a class="nav-link" href="#">About</a>
                 </li>
             </ul>
-            <form class="form-inline form-signin my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="email" placeholder="Email">
-                <input class="form-control mr-sm-2" type="password" placeholder="Password">
-                <button class="btn btn-success mr-sm-2" role="button" type="submit">Sign In</button>
-                <a class="btn btn-success mr-sm-2" href="#" role="button">Sign Up</a>
-            </form>
+            <a class="btn btn-success mr-sm-2" href="/users/login" role="button">Log in</a>
+            <a class="btn btn-success mr-sm-2" href="/users/register" role="button">Register</a>
         </div>
     </nav>
-
+    <div class="container">
+        {{{body}}}
+    </div>
 </body>
 
 </html>
