@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
+var db = require('../app/models/db');
+
 // var passport = require('passport');
 // var LocalStrategy = require('passport-local').Strategy;
-
-// var User = require('../models/user');
+var User = require('../app/models/user');
 // crypto
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
@@ -38,8 +39,6 @@ router.post('/register', function (req, res) {
 	req.checkBody('password', 'Password is required').notEmpty();
 	req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
 
-
-
 	var errors = req.validationErrors();
 
 	if (errors) {
@@ -57,9 +56,27 @@ router.post('/register', function (req, res) {
 		var salt = bcrypt.genSaltSync(saltRounds);
 		newUser.password = bcrypt.hashSync(newUser.password, salt);
 		console.log(newUser);
+		db.query('insert into users(name, username, email, phone, password) values ($1, $2,$3,$4,$5)',
+			[newUser.name, newUser.username, newUser.email, newUser.phonenumber, newUser.password],
+			function (err, result) {
+				if (err) {
 
-		req.flash('success_msg', 'You are registered and can now login');
-		res.redirect('/users/login');
+					req.flash('error_msg', 'Registered fail! Please register again');
+					res.redirect('/users/register');
+					return console.error('error running query', err);
+				} else {
+					req.flash('success_msg', 'You are registered and can now login');
+					res.redirect('/users/login');
+				}
+
+				//
+				//console.log(result.rows[0].name); // output: foo
+			});
+
+	//	req.flash('success_msg', 'You are registered and can now login');
+	//	res.redirect('/users/login');
+
+
 	}
 
 });
