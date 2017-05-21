@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../app/models/db');
+var app = express();
 
-// var passport = require('passport');
-// var LocalStrategy = require('passport-local').Strategy;
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 var User = require('../app/models/user');
 // crypto
 var bcrypt = require('bcrypt');
@@ -13,11 +14,13 @@ const saltRounds = 10;
 // Register
 router.get('/register', function (req, res) {
 	res.render('register');
+
 });
 
 // Login
 router.get('/login', function (req, res) {
 	res.render('login');
+
 });
 
 // Register User
@@ -34,7 +37,6 @@ router.post('/register', function (req, res) {
 	req.checkBody('email', 'Email is required').notEmpty();
 	req.checkBody('email', 'Email is not valid').isEmail();
 	req.checkBody('phonenumber', 'Phone number is required').notEmpty();
-	//req.checkBody('phonenumber', 'Phone number is not valid').isMobilePhone();
 	req.checkBody('username', 'Username is required').notEmpty();
 	req.checkBody('password', 'Password is required').notEmpty();
 	req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
@@ -53,34 +55,99 @@ router.post('/register', function (req, res) {
 			username: username,
 			password: password
 		});
-		var salt = bcrypt.genSaltSync(saltRounds);
-		newUser.password = bcrypt.hashSync(newUser.password, salt);
-		console.log(newUser);
-		db.query('insert into users(name, username, email, phone, password) values ($1, $2,$3,$4,$5)',
-			[newUser.name, newUser.username, newUser.email, newUser.phonenumber, newUser.password],
-			function (err, result) {
-				if (err) {
 
-					req.flash('error_msg', 'Registered fail! Please register again');
-					res.redirect('/users/register');
-					return console.error('error running query', err);
-				} else {
-					req.flash('success_msg', 'You are registered and can now login');
-					res.redirect('/users/login');
-				}
+		//console.log(newUser);
+		User.create(newUser, function (err) {
+			if (err) {
+				req.flash('error_msg', 'Registered fail! Please register again');
+				res.redirect('/register');
+				return console.error('error running query', err);
+			} else {
 
-				//
-				//console.log(result.rows[0].name); // output: foo
-			});
-
-	//	req.flash('success_msg', 'You are registered and can now login');
-	//	res.redirect('/users/login');
-
-
+				req.flash('success_msg', 'You are registered and can now login');
+				res.redirect('/login');
+			}
+		});
 	}
 
 });
 
+
+passport.use(new LocalStrategy({
+	usernameField: 'email',
+	passwordField: 'password'
+},
+	function (email, password, done) {
+		User.getUserByEmail(email, function (err, user) {
+			if (err) throw err;
+			if (!user) { return done(null, false, { message: 'Unknown User' }) };
+			if (user.password != password) { return done(null, false, { message: 'Invalid password' }) };
+			return done(null, user);
+		});
+	}));
+
+passport.serializeUser(function (user, done) {
+	done(null, user.id);
+});
+
+passport.deserializeUser(function (id, done) {
+	User.getUserByID(id, function (err, user) {
+		done(err, user);
+	});
+});
+
+
+router.post('/login',
+	passport.authenticate('local'),
+	function (req, res) {
+		if (!req.user) {
+			req.flash('error_msg', 'Wrong user or password');
+		} else {
+			req.flash('success_msg', 'Log in successfully');
+			res.redirect('/');
+		}
+	});
+
+router.get('/logout', function (req, res) {
+	req.logout();
+	req.flash('success_msg', 'You are logged out');
+	res.redirect('/login');
+});
+
+
+router.get('/users', ensureAuthenticated, function (req, res) {
+	User.getAllUsers(req.user.id, function (err, users) {
+		res.render('users', { users: users });
+	});
+});
+
+router.get('/messages', ensureAuthenticated, function (req, res) {
+		User.getFriends(req.user.id, function (err, users) {
+		res.render('messages', { users: users });
+	});
+
+});
+
+function ensureAuthenticated(req, res, next) {
+	if (req.isAuthenticated()) {
+		return next();
+	} else {
+		req.flash('error_msg', 'You are not logged in');
+		res.redirect('/login');
+	}
+}
+
+router.post('/users', function (req, res) {
+	console.log(req.body.id);
+	User.addFriend(req.user.id, req.body.id, function (err) {
+		if (err) {
+
+		} else {
+
+			res.redirect('/users');
+		}
+	});
+});
 
 module.exports = router;
 
