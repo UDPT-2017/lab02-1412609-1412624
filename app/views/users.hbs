@@ -1,0 +1,66 @@
+<title>
+    Users
+</title>
+<h2 class="page-header">
+    Users list
+</h2>
+<div class="row">
+    <form method="POST" action="/users" id="frmAddFriend">
+        <input type="hidden" name="id" id="txtAddFriendId">
+    </form>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    User ID
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Username
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Phone
+                </th>
+                <th>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each users }}
+            <tr>
+                <td>
+                    {{id}}
+                </td>
+                <td>
+                    {{name}}
+                </td>
+                <td>
+                    {{username}}
+                </td>
+                <td>
+                    {{{email}}}
+                </td>
+                <td>
+                    {{phone}}
+                </td>
+                <td>
+                    <a class="btn btn-xs btn-primary addFriend" data-id="{{id}}" href="javascript:;" title="Add">
+                        <span class="glyphicon glyphicon-pencil">
+                            +
+                        </span>
+                    </a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+<script>
+jQuery('#users').addClass('active');
+</script
