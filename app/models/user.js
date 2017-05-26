@@ -17,7 +17,7 @@ var User = {
     getUserByUserName: function (username, callback) {
         db.query('select * from users where username = $1', [username],
             function (err, result) {
-                console.log(err);
+                
                 callback(err,  result.rows[0]);
             });
 
@@ -25,7 +25,7 @@ var User = {
     getUserByEmail: function (email, callback) {
         db.query('select * from users where email = $1', [email],
             function (err, result) {
-                console.log(err);
+                
                 console.log(result.rows[0]);
                 callback(err, result.rows[0]);
             });
@@ -34,7 +34,7 @@ var User = {
     getUserByID: function (id, callback) {
         db.query('select * from users where id = $1', [id],
             function (err, result) {
-                console.log(err);
+                
                 callback(err, result.rows[0]);
             });
     },
