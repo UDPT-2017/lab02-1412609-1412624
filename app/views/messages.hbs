@@ -1,65 +1,12 @@
 <title>
     Messages
 </title>
-<h2 class="page-header">
-    Friend list
-</h2>
-<div class="row">
-    <form method="POST" action="/messages" id="frmAddFriend">
-        <input type="hidden" name="id" id="txtAddFriendId">
-    </form>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>
-                    User ID
-                </th>
-                <th>
-                    Name
-                </th>
-                <th>
-                    Username
-                </th>
-                <th>
-                    Email
-                </th>
-                <th>
-                    Phone
-                </th>
-                <th>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each users }}
-            <tr>
-                <td>
-                    {{id}}
-                </td>
-                <td>
-                    {{name}}
-                </td>
-                <td>
-                    {{username}}
-                </td>
-                <td>
-                    {{{email}}}
-                </td>
-                <td>
-                    {{phone}}
-                </td>
-                <td>
-                    <a class="btn btn-xs btn-primary addFriend" data-id="{{id}}" href="javascript:;" title="Add">
-                        <span class="glyphicon glyphicon-pencil">
-                            +
-                        </span>
-                    </a>
-                </td>
-            </tr>
-            {{/each}}
-        </tbody>
-    </table>
+<div class="row" style="background: lightblue;">
+    <div class="col-lg-4">
+        <h2>Heading</h2>
+        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum
+            nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio
+            dui. </p>
+        <p><a class="btn btn-primary" href="#" role="button">View details »</a></p>
+    </div>
 </div>
-<script>
-jQuery('#messages').addClass('active');
-</script>
