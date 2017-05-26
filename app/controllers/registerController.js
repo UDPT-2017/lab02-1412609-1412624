@@ -1,3 +1,5 @@
+
+var User = require('../models/user');
 var registerController = {
     index: function (req, res) {
         res.render('register');
