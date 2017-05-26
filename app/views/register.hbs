@@ -1,52 +1,25 @@
-<h2 class="page-header">Register</h2>
-<title>Register</title>
-<p class="text-warning">This is a testing server. Please provide fake information!</p> 
-
-{{#if errors}} {{#each errors}}
+ {{#if errors}} {{#each errors}}
 <div class="alert alert-danger">{{msg}}</div>
 {{/each}} {{/if}}
 
-<form method="post" action="/register">
-  <div class="form-group  ">
-    <label class="col-2 col-form-label">Name</label>
-    <div class="col-4">
-      <input type="text" class="form-control" placeholder="Name" name="name">
-    </div>
-  </div>
+<form class="form-signin" method="post" action="/register">
+  <h2 class="page-header">Register</h2>
+  <title>Register</title>
+  <p class="text-warning">This is a testing server. Please provide fake information!</p>
+  <label class="col-form-label"><b>Name</b></label>
+  <input type="text" class="form-control" placeholder="Name" name="name">
+  <label class="col-form-label"><b>Username</b></label>
+  <input type="text" class="form-control" placeholder="Username" name="username">
+  <label class="col-form-label"><b>Email</b></label>
+  <input type="email" class="form-control" placeholder="Email" name="email">
+  <label class="col-form-label"><b>Phone number</b></label>
+  <input type="text" class="form-control" placeholder="Phone number" name="phonenumber">
+  <label class="col-form-label"><b>Password</b></label>
+  <input type="password" class="form-control" placeholder="Password" name="password">
+  <p class="text-warning">We can see your password because your password is not encrypted</p>
+  <label class="col-form-label"><b>Confirm Password</b></label>
+  <input type="password" class="form-control" placeholder="Password" name="password2">
 
-   <div class="form-group  ">
-    <label class="col-2 col-form-label">Username</label>
-    <div class="col-4">
-      <input type="text" class="form-control" placeholder="Username" name="username">
-    </div>
-  </div>
+  <button class="btn btn-lg btn-primary btn-block" type="submit"  style=" margin-top: 15px;">Register</button>
 
-  <div class="form-group  ">
-    <label class="col-2 col-form-label">Email</label>
-    <div class="col-4">
-      <input type="email" class="form-control" placeholder="Email" name="email">
-    </div>
-  </div>
-   <div class="form-group  ">
-    <label class="col-2 col-form-label">Phone number</label>
-    <div class="col-4">
-      <input type="text" class="form-control" placeholder="Phone number" name="phonenumber">
-    </div>
-  </div>
-  <div class="form-group  ">
-    <label class="col-2 col-form-label">Password</label>
-    <div class="col-4">
-      <input type="password" class="form-control" placeholder="Password" name="password">
-      <p class="text-warning">We can see your password because your password is not encrypted</p>   
-    </div>
-  </div>
-  <div class="form-group  ">
-    <label class="col-2 col-form-label">Confirm Password</label>
-    <div class="col-4">
-      <input type="password" class="form-control" placeholder="Password" name="password2">
-    </div>
-  </div>
-  <div class="col-4">
-    <button type="submit" class="btn btn-success mr-sm-2">Submit</button>
-  </div>
 </form>

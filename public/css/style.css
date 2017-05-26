@@ -1,0 +1,47 @@
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.jumbotron {
+text-align: center; 
+background-color: transparent;
+}
+
+
+         :root {
+            --mdc-theme-primary: #ff1744;
+        }
+
+        .mdc-ripple-surface.mdc-ripple-upgraded.mdc-button--primary::before,
+        .mdc-ripple-surface.mdc-ripple-upgraded.mdc-button--primary::after {
+            background-color: rgba(255, 255, 255, .2);
+        }
+
+        #greeting-form>button {
+            margin-top: 8px;
+        }
+
+
+.imgslide{
+    height: 50%; 
+    width: 100%; 
+    display: block;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+.carosel {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+
+}
+
+.welcome {
+text-shadow: 0 0 25px rgba(0,0,0,0.3);
+        margin: 25px 25px 25px 25px;
+        text-align: center;
+        color: #000a12
+}
