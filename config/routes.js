@@ -51,6 +51,7 @@ router.get('/logout', controllers.logout.logout);
 router.get('/about', controllers.about.index);
 //Messages
 router.get('/messages', ensureAuthenticated, controllers.message.index);
+router.get('/messages', ensureAuthenticated, controllers.message.updateRTime);
 router.get('/messages/new', ensureAuthenticated, controllers.newMesssage.index);
 router.get('/messages/sent', ensureAuthenticated, controllers.sentMesssage.index);
 router.get('/friends', ensureAuthenticated, controllers.friend.index);
