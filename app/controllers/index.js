@@ -8,4 +8,6 @@ module.exports = {
     register: require('./registerController'),
     user: require('./userController'),
     newMesssage: require('./newMessageController'),
+    sentMesssage: require('./sentMessageController'),
+    friend: require('./friendController'),
 }

@@ -1,14 +1,21 @@
 <title>
     Messages
 </title>
-<div class="row" style="background: lightblue;">
+{{#each messages}} {{#if rtime}}
+<div class="row" style="background: white;">
+    {{else}}
+    <div class="row" style="background: lightblue"> 
+    {{/if}} 
     <div class="col-lg-4">
-        {{#each messages}}
+
         <h2>{{name}}</h2>
         <p>{{msg}}</p>
         <p><a class="btn btn-primary" href="#" role="button">Reply</a></p>
-        {{/each}}
+
     </div>
 </div>
+{{/each}}
 
- <a class="btn btn-success mr-sm-2" href="/messages/new" role="button">New message</a>
+<a class="btn btn-success mr-sm-2" href="/messages/new" role="button">New message</a>
+<a class="btn btn-success mr-sm-2" href="/friends" role="button">Friends</a>
+<a class="btn btn-success mr-sm-2" href="/messages/sent" role="button">Sent</a>

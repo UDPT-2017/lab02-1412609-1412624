@@ -1,23 +1,30 @@
 var db = require('./db');
 
 var Message = {
-    getSeenMessage: function (iduser, callback) {
-        db.query('select m.id, m.msg, m.suser, u.name,u.username, m.stime,m.rtime from messages m join users u on u.id = m.suser where rTime is not null and rUser = $1 order by stime asc',[iduser],
+    getMessages: function (iduser, callback) {
+        db.query('select m.id, m.msg, m.suser, u.name,u.username, m.stime,m.rtime from messages m join users u on u.id = m.suser where rUser = $1 order by stime asc', [iduser],
             function (err, result) {
-                callback(err,result.rows);
+                callback(err, result.rows);
             });
     },
-    getUnreadMessage: function (user, callback) {
-        db.query('select m.id, m.msg, m.suser, u.name,u.username, m.stime,m.rtime from messages m join users u on u.id = m.suser where rTime is null and rUser = $1 order by stime asc',[user.id],
+    getSentMessage: function (user, callback) {
+        db.query('select m.id, m.msg, m.suser, u.name,u.username, m.stime,m.rtime from messages m join users u on u.id = m.ruser where sUser = $1 order by stime asc', [user.id],
             function (err, result) {
-                callback(err,result.rows);
+                callback(err, result.rows);
             });
     },
-    sendMessage: function (user, callback) {
-        db.query('select m.id, m.msg, m.suser, u.name,u.username, m.stime,m.rtime from messages m join users u on u.id = m.suser where rTime is null and rUser = $1 order by stime asc',[user.id],
+    sendMessage: function (message, callback) {
+        db.query('insert into messages (msg, sUser, rUser, sTime) values($1, $2, $3, LOCALTIMESTAMP)', [message.msg, message.sUser, message.rUser],
             function (err, result) {
-                callback(err,result.rows);
+                callback(err);
+            });
+    },
+    updateRTime: function (message, callback) {
+        db.query('insert into messages (msg, sUser, rUser, sTime) values($1, $2, $3, LOCALTIMESTAMP)', [message.msg, message.sUser, message.rUser],
+            function (err, result) {
+                callback(err);
             });
     },
 }
 module.exports = Message;
+
