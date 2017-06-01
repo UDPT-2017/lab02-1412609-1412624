@@ -6,7 +6,7 @@ Thành viên:
 * [x] **1412624** Nguyễn Quốc Anh Tú (nqatu)
 * [ ] **MSSV2** Tên sinh viên 2 (tên tài khoản github)
 
-URL: **URL hosting của bài tập**
+URL: **https://nodejsanhtu.herokuapp.com**
 
 ## Yêu cầu
 
@@ -52,7 +52,7 @@ Liệt kê các **yêu cầu nâng cao** đã thực hiện:
 
 Link ảnh GIF demo ứng dụng:
 
-![Video Walkthrough](demo.gif)
+![Video Walkthrough](https://www.dropbox.com/s/8wy4aisavxiot4w/lab2demo.gif?dl=0)
 
 Tạo ảnh GIF với chương trình [LiceCap](http://www.cockos.com/licecap/).
 
