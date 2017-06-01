@@ -6,5 +6,8 @@ module.exports = {
     logout: require('./logoutController'),
     message: require('./messageController'),
     register: require('./registerController'),
-    user: require('./userController')
+    user: require('./userController'),
+    newMesssage: require('./newMessageController'),
+    sentMesssage: require('./sentMessageController'),
+    friend: require('./friendController'),
 }

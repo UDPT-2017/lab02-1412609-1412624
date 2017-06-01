@@ -7,7 +7,7 @@ var userController = {
         });
     },
     addFriend: function (req, res) {
-        console.log(req.body.id); 
+      //  console.log(req.body.id); 
         User.addFriend(req.user.id, req.body.id, function (err) {
             if (err) {
             } else {
