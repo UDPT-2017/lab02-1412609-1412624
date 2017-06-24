@@ -65,8 +65,8 @@ router.post('/users', controllers.user.addFriend);
 router.get('/', ensureAuthenticated, controllers.home.index);
 
 
-module.exports = function(app){
-	app.use('/',router);
+module.exports = function (app) {
+	app.use('/', router);
 }
 
 
